@@ -1,1 +1,1 @@
-​
+​Basically we need size - n + 1 node to delete, after reverse engineering  make slow and fast pointer both start from head,move fast pointer to n times,iit basically create distance n lenght between fast and slow. and then move fast to end ans move slow pointer with that and because of n dist between them slow became n distance from last. and delete the node. 

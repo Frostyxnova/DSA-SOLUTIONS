@@ -1,1 +1,1 @@
-​Core concept is update the maxTime
+​Core concept is keep update the maxTime

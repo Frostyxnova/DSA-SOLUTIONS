@@ -1,15 +1,14 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-    int freq[] = new int[26];
-        for(int i = 0; i < sentence.length(); i++){
-            freq[sentence.charAt(i) - 'a']++;
-        }
-        
-        for(int i: freq){
-            if(i == 0){
-                return false;
-            }
-        }
-        return true;
+        HashMap<Character, Integer> map = new HashMap<>(); 
+      char[] str_array = sentence.toCharArray();
+      for (char c : str_array){
+         if (map.containsKey(c)){
+            map.put(c, map.get(c) + 1);
+         }else{
+            map.put(c, 1);
+         }
+      }
+          return map.size() == 26;
     }
 }

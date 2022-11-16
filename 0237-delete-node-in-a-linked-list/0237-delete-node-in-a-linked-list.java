@@ -11,10 +11,10 @@ class Solution {
     while(node.next.next != null){
         node.val = node.next.val;
         node = node.next;
-    }    
-        if(node.next != null){
-           node.val = node.next.val;
-           node.next = null;
+    }
+        while(node.next != null){
+            node.val = node.next.val;
+            node.next = null;
         }
     }
 }

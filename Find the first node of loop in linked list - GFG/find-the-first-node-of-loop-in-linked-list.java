@@ -108,13 +108,24 @@ class GFG
 class Solution {
     //Function to find first node if the linked list has a loop.
     public static int findFirstNode(Node head){
-    HashMap<Node,Integer> map = new HashMap<>();
-    Node cur = head;
-    while(cur != null){
-        if(map.containsKey(cur)) return cur.data;
-        else map.put(cur,1);
-    cur = cur.next;
+        Node meet = isCyclePresent(head);
+        if(meet == null) return -1;
+        Node cur = head;
+        while(cur!=meet){
+            cur = cur.next;
+            meet = meet.next;
+        }
+        return cur.data;
+        
     }
-    return -1;
+    static Node isCyclePresent(Node head){
+    Node slow = head, fast = head;
+    while(fast!=null && fast.next!=null){
+        slow = slow.next;
+        fast = fast.next.next;
+        
+        if(fast==slow) return slow;
+    }
+        return null;
     }
 }

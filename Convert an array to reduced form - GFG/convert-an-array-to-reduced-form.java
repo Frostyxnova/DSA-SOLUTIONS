@@ -36,35 +36,11 @@ public class Main {
 
 class Solution {
     void convert(int[] arr, int n) {
-    int temp[] = new int[n], ansB[] = new int[n], x = 0;
-    
-    // copying array
-    for(int i = 0; i < n; i++) temp[i] = arr[i];
-    Arrays.sort(temp);
-    
-    // search each element
-    for(int i = 0; i < n; i++){
-        x = binarySearch(temp,0,n-1,arr[i]);
-        ansB[i] = x;
-    }
-    for(int i = 0; i < n; i++) arr[i] = ansB[i];
-        
-    }
-    
-    int binarySearch(int arr[], int l, int r, int x){
-        if (r >= l) {
-            int mid = l + (r - l) / 2;
-            if (arr[mid] == x)
-                return mid;
- 
-            if (arr[mid] > x)
-                return binarySearch(arr, l, mid - 1, x);
- 
-           
-            return  binarySearch(arr, mid + 1, r, x);
-        }
- 
-      
-        return -1;
+        int[] temp = arr.clone();
+        Arrays.sort(temp);
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        int val = 0;
+        for(int num: temp) hm.put(num,val++);
+        for(int i = 0; i < n; i++) arr[i] = hm.get(arr[i]);
     }
 }

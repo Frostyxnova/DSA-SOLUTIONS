@@ -48,15 +48,9 @@ class Node {
 */
 class Solution {
     static boolean searchKey(int n, Node head, int key) {
-    Node cur = head;
-    int i = 0;
-    while(i < n){
-        if(cur.data == key){
-            return true;
-        }
-        cur = cur.next;
-        i++;
-    }   
-    return false;
+        if(head == null) return false;
+        if(head.data == key) return true;
+       
+        return searchKey(n,head.next,key);
     }
 }

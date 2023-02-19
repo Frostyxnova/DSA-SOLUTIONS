@@ -173,12 +173,13 @@ class Node {
 */
 
 class Solution {
+    int j = 0;
     public Node correctBST(Node root) {
        List<Integer> values = new ArrayList<>();
         inOrder(root,values);
         Collections.sort(values);
         int[] index = {0};
-        updateTree(root,values,index);
+        updateTree(root,values);
         
         return root;
     }
@@ -188,10 +189,10 @@ class Solution {
         values.add(root.data);
         inOrder(root.right,values);
     }
-    public void updateTree(Node root,List<Integer> values, int[] index){
+    public void updateTree(Node root,List<Integer> values){
         if(root == null) return;
-        updateTree(root.left,values,index);
-        root.data = values.get(index[0]++);
-        updateTree(root.right,values,index);
+        updateTree(root.left,values);
+        root.data = values.get(j++);
+        updateTree(root.right,values);
     }
 }

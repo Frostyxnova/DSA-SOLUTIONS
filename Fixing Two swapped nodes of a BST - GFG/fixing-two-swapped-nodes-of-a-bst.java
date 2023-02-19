@@ -178,7 +178,7 @@ class Solution {
        List<Integer> values = new ArrayList<>();
         inOrder(root,values);
         Collections.sort(values);
-        int[] index = {0};
+        
         updateTree(root,values);
         
         return root;

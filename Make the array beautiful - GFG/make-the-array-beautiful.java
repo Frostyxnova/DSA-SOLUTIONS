@@ -51,18 +51,24 @@ class GFG {
 
 class Solution {
     public static ArrayList<Integer> makeBeautiful(int[] arr) {
-    ArrayList<Integer> ans = new ArrayList<>();
+    Stack<Integer> ans = new Stack<>();
     for(int i : arr){
-        if(ans.size() == 0){
-            ans.add(i);
+        if(ans.isEmpty()){
+            ans.push(i);
         }
-        else if((ans.get(ans.size()-1) >= 0 && i < 0) || (ans.get(ans.size()-1) < 0 && i >= 0)){
-            ans.remove(ans.size()-1); // pop operation
+        else if((ans.peek() >= 0 && i < 0) || (ans.peek() < 0 && i >= 0)){
+            ans.pop(); // pop operation
         }
         else{
-            ans.add(i); // push operation
+            ans.push(i); // push operation
         }
     }
-    return ans;
+    ArrayList<Integer> res = new ArrayList<>();
+    while(!ans.isEmpty()){
+        res.add(ans.peek());
+        ans.pop();
+    }
+    Collections.reverse(res);
+    return res;
     }
 }

@@ -54,7 +54,11 @@ class GFG {
 
 class Solution {
     int solve(int a, int b, int c) {
-    return (a > 2*(b + c + 1) || c > 2*(b + a + 1) || b > 2*(a + c + 1))?-1:a+b+c;
+    int max = Math.max(a,Math.max(b,c));
+    if(max <= 2*(a+b+c-max+1)){
+        return a + b + c;
+    }
+    return -1;
     }
 };
 

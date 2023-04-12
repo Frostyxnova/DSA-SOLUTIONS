@@ -68,9 +68,9 @@ class Solution {
             j++;
             flag = true;
         }
-        if(flag){
+        
             finalCount+= cnt;
-        }
+        
     }
     return finalCount;
     }

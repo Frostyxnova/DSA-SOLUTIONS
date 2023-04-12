@@ -61,14 +61,12 @@ class Solution {
     Arrays.sort(arr,0,n/2);
     int cnt = 0, finalCount = 0;
     int j = n/2;
-    boolean flag = false;
+    
     for(int i = 0; i < n/2; i++){
         while(j < n && arr[i] >= (5*arr[j])){
             cnt++;
             j++;
-            flag = true;
         }
-        
             finalCount+= cnt;
         
     }

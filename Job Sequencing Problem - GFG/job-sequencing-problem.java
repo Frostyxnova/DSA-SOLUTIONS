@@ -47,7 +47,7 @@ class Solution
     //Function to find the maximum profit and the number of jobs done.
     int[] JobScheduling(Job arr[], int n)
     {
-        Arrays.sort(arr,(a,b)->b.profit-a.profit);
+        Arrays.sort(arr, (a,b)-> b.profit - a.profit);
         boolean[] done = new boolean[n];
         int day = 0, profit = 0;
         for (int i = 0; i < n; i++) {
@@ -61,6 +61,9 @@ class Solution
             }
         }
         return new int[] {day, profit};
-    }
 
+        
+       
+    }
+    
 }

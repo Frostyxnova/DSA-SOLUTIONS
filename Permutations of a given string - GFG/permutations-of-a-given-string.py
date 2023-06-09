@@ -1,23 +1,8 @@
 #User function Template for python3
-
+from itertools import permutations
 class Solution:
     def find_permutation(self, S):
-        res = set()
-        arr = list(S)
-        self.recur(0,arr,res)
-        sortedRes = sorted(list(res))
-        return sortedRes
-        
-    def recur(self,index,arr,res):
-        if index == len(arr):
-            res.add("".join(arr))
-            return
-        for i in range(index,len(arr)):
-            arr[index], arr[i] = arr[i], arr[index]
-            self.recur(index + 1,arr,res)
-            arr[i],arr[index] = arr[index], arr[i] #backtrack
-       
-        
+        return sorted(set(''.join(p) for p in permutations(S)))
 
 
 

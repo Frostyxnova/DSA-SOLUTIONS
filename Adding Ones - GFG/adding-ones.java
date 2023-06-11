@@ -49,10 +49,10 @@ class Solution {
     public static void update(int a[], int n, int updates[], int k)
     {
     for(int i = 0; i < k; i++){
-        int temp = updates[i];
-        for(int j = temp -1; j < n; j++){
-            a[j] = a[j] + 1;
-        }
+      a[updates[i]-1]++;
+    }
+    for(int j = 1; j < n; j++){
+        a[j] += a[j-1];
     }
     }
     

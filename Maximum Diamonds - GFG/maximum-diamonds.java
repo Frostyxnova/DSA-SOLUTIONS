@@ -41,8 +41,7 @@ class Solution {
     while(K-->0){
        int temp = pq.poll();
        ans += temp;
-       temp /= 2;
-       pq.add(temp);
+       pq.add(temp/2);
        
     }
     return ans;

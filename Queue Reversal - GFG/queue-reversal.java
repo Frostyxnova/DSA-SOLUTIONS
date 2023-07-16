@@ -52,11 +52,17 @@ class Reversing{
 class GfG{
     //Function to reverse the queue.
     public Queue<Integer> rev(Queue<Integer> q){
-        //add code here.
-        Deque<Integer> ans = new ArrayDeque<>();
-        while(!q.isEmpty()){
-            ans.offerFirst(q.poll());
-        }
-        return ans;
+        reverse(q);
+        return q;
+    }
+    private void reverse(Queue<Integer> q){
+        if(q.isEmpty()) return;
+        int n = q.peek();
+        q.remove();
+        
+        reverse(q);
+        q.add(n);
+        
+        
     }
 }

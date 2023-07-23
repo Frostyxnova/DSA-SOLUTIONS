@@ -18,28 +18,31 @@ class Node
 
 class Driverclass
 {
-    public static void main (String[] args) 
+    public static void main (String[] args) throws IOException
     {
-        Scanner sc= new Scanner(System.in);
-        int t = sc.nextInt();
+        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
+        int t = Integer.parseInt(in.readLine().trim());
         
         while(t-- > 0)
         {
-            int n = sc.nextInt();
-            Node head = new Node(sc.nextInt());
+            int n =Integer.parseInt(in.readLine().trim());
+            String s[] = in.readLine().trim().split(" ");
+            Node head = new Node(Integer.parseInt(s[0]));
             Node tail = head;
-            while(n-- > 1){
-		        tail.next = new Node(sc.nextInt());
-		        tail = tail.next;
-		    }
-		   
-		      head = new Solution().segregate(head);
-		     printList(head);
-		    System.out.println();
+            for (int i = 1; i < n; i++) {
+                tail.next = new Node(Integer.parseInt(s[i]));
+                tail = tail.next;
+            }
+
+            head = new Solution().segregate(head);
+            printList(head, out);
+            out.println();
         }
+        out.close();
     }
     
-    public static void printList(Node head)
+    public static void printList(Node head,PrintWriter out)
     {
         if(head == null)
            return;
@@ -47,7 +50,7 @@ class Driverclass
         Node temp = head;
         while(temp != null)
         {
-            System.out.print(temp.data + " ");
+            out.print(temp.data + " ");
             temp = temp.next;
         }
     }
@@ -80,20 +83,37 @@ class Solution
     //Function to sort a linked list of 0s, 1s and 2s.
     static Node segregate(Node head)
     {
-        ArrayList<Integer> list = new ArrayList<>();
+        if(head == null || head.next ==  null) return head;
+        
+        Node zero = new Node(0);
+        Node one = new Node(0);
+        Node two = new Node(0);
+        Node zeroTail = zero;
+        Node oneTail = one;
+        Node twoTail = two;
+        
         Node curr = head;
         while(curr != null){
-            list.add(curr.data);
+            if(curr.data == 0){
+                zeroTail.next = curr;
+                zeroTail = zeroTail.next;
+            }
+            else{
+                if(curr.data == 1){
+                    oneTail.next = curr;
+                    oneTail = oneTail.next;
+                }
+                else{
+                    twoTail.next = curr;
+                    twoTail = twoTail.next;
+                }
+            }
             curr = curr.next;
         }
-        Collections.sort(list);
-        Node ans = new Node(list.get(0));
-        Node temp  = ans;
-        for(int i = 1; i < list.size(); i++){
-            temp.next = new Node(list.get(i));
-            temp = temp.next;
-        }
-        return ans;
+        zeroTail.next = (one.next != null) ? one.next : two.next;
+        oneTail.next = two.next;
+        twoTail.next = null;
+        return zero.next;
     }
 }
 

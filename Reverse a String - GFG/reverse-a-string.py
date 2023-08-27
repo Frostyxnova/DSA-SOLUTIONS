@@ -2,15 +2,8 @@
 
 class Solution:
     def reverseWord(self, s):
-        char_list = list(s)
-        start = 0
-        end = len(s) - 1
-        while start < end:
-            char_list[start], char_list[end] = char_list[end], char_list[start]
-            start += 1
-            end -= 1
-        reversed_list = "".join(char_list)
-        return reversed_list
+        return s[::-1]
+       
 
 #{ 
  # Driver Code Starts

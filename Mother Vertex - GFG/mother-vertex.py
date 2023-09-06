@@ -10,9 +10,10 @@ class Solution:
         
         vis = [False] * V
         self.dfs(adj, mV, vis)
-        for val in vis:
-            if not val:
-                return -1
+        if all(vis):
+            return mV
+        return -1
+      
         
         return mV
     

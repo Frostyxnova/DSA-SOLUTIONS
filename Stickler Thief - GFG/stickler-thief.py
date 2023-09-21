@@ -4,14 +4,19 @@ class Solution:
     
     #Function to find the maximum money the thief can get.
     def FindMaxSum(self,a, n):
-        dp = [-1]*(n + 1)
+        prev2 = 0
+        prev = a[0] 
+        
         for i in range(n):
             take = a[i]
             if i > 1:
-                take += dp[i-2]
-            not_take = dp[i-1]
-            dp[i] = max(take, not_take)
-        return dp[n-1]
+                take += prev2
+            not_take = prev
+            cur_i = max(take, not_take)
+            prev2 = prev
+            prev = cur_i
+            
+        return prev
         
     
 

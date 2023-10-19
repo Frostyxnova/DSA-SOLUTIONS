@@ -1,21 +1,22 @@
 #User function Template for python3
-from queue import Queue
+from collections import deque
+
 
 class Solution:
     def nodeLevel(self, V, adj, X):
-        q = Queue()
-        q.put((0, 0))
+        q = deque()
+        q.append((0, 0))
         vis = [0] * V
         vis[0] = 1
 
-        while not q.empty():
-            level, node = q.get()
+        while q:
+            level, node = q.popleft()
             if node == X:
                 return level
             for neighbor in adj[node]:
                 if not vis[neighbor]:
                     vis[neighbor] = 1
-                    q.put((level + 1, neighbor))
+                    q.append((level + 1, neighbor))
 
         return -1
                  

@@ -1,28 +1,22 @@
 #User function Template for python3
-from collections import deque
-
 
 class Solution:
-    def nodeLevel(self, V, adj, X):
-        q = deque()
-        q.append((0, 0))
-        vis = [0] * V
-        vis[0] = 1
-
-        while q:
-            level, node = q.popleft()
-            if node == X:
-                return level
-            for neighbor in adj[node]:
-                if not vis[neighbor]:
-                    vis[neighbor] = 1
-                    q.append((level + 1, neighbor))
-
+    # Function to find the level of node X.
+    def DFS(self, node, adj, target, level, vis):
+        if node == target:
+            return level
+        vis[node] = 1
+        for ch in adj[node]:
+            if vis[ch] == 0:
+                LEVEL = self.DFS(ch, adj, target, level + 1, vis)
+                if LEVEL != -1:
+                    return LEVEL
+        vis[node] = 0
         return -1
-                 
-        
-             
-        
+
+    def nodeLevel(self, V, adj, X):
+        vis = [0] * V
+        return self.DFS(0, adj, X, 0, vis)
         
        
 
